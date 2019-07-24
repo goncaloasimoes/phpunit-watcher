@@ -14,7 +14,7 @@ class Notification
     {
         $joliNotification = (new JoliNotification)
             ->setTitle('PHPUnit Watcher')
-            ->setIcon(__DIR__.'/../images/notificationIcon.png');
+            ->setIcon(__DIR__ . '/../images/notificationIcon.png');
 
         return new static($joliNotification);
     }

@@ -77,7 +77,7 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (! empty($this->phpunitArguments)) {
+        if (!empty($this->phpunitArguments)) {
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 
@@ -127,7 +127,14 @@ class Phpunit extends Screen
             : 'failingTests';
 
         if ($this->options['notifications'][$notificationName]) {
-            Notification::create()->$notificationName();
+            if ($notificationName === 'passingTests' and $this->lastFailure) {
+                $this->lastFailure = false;
+                $type = Notification::create()->$notificationName();
+            }
+            if ($notificationName === 'failingTests') {
+                $this->lastFailure = true;
+                $type = Notification::create()->$notificationName();
+            }
         }
     }
 }

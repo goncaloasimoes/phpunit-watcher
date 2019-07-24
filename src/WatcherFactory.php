@@ -13,8 +13,8 @@ class WatcherFactory
 
         if (empty($options['watch']['directories'])) {
             throw new InvalidArgumentException(
-                'The watch directories do not exist. Make sure you are running the watcher from '.
-                'the root of your project, or create a custom config file.'
+                'The watch directories do not exist. Make sure you are running the watcher from ' .
+                    'the root of your project, or create a custom config file.'
             );
         }
 
@@ -50,7 +50,7 @@ class WatcherFactory
         ], $options);
 
         $options['watch']['directories'] = array_map(function ($directory) {
-            return getcwd()."/{$directory}";
+            return getcwd() . "/{$directory}";
         }, $options['watch']['directories']);
 
         $options['watch']['directories'] = array_filter($options['watch']['directories'], function ($directory) {
